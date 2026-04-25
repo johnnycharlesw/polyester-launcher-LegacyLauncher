@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlphaVanillaTweakInjector implements IClassTransformer {
+    public string username = "FocusPup824";
     public AlphaVanillaTweakInjector() {
     }
 
@@ -29,6 +30,16 @@ public class AlphaVanillaTweakInjector implements IClassTransformer {
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<?> clazz;
+
+        boolean contains = args[0] == "--username"
+
+        if (contains) {
+            this.username = args[1]
+        } else {
+            String name = "Player" + System.currentTimeMillis() % 1000;
+            if (args.length > 0) name = args[0];
+            this.username=name;
+        }
 
         try {
             clazz = getaClass("net.minecraft.client.MinecraftApplet");
@@ -63,8 +74,7 @@ public class AlphaVanillaTweakInjector implements IClassTransformer {
         final Map<String, String> params = new HashMap<String, String>();
 
         // Extract params
-        String name = "Player" + System.currentTimeMillis() % 1000;
-        if (args.length > 0) name = args[0];
+        String name = 
 
         String sessionId = "-";
         if (args.length > 1) sessionId = args[1];
